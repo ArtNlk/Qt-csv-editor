@@ -43,6 +43,16 @@
         <source>О программе</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="mainwindow.cpp" line="38"/>
+        <source>Abou CSV editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="39"/>
+        <source>This app was created by ArtNlk</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MdiChild</name>
