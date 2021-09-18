@@ -9,48 +9,55 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="39"/>
+        <location filename="mainwindow.ui" line="42"/>
         <source>Файл</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="46"/>
+        <location filename="mainwindow.ui" line="49"/>
         <source>Окно</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="52"/>
+        <location filename="mainwindow.ui" line="55"/>
         <source>Справка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="63"/>
+        <location filename="mainwindow.ui" line="66"/>
         <source>Открыть</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="68"/>
+        <location filename="mainwindow.ui" line="71"/>
         <source>Выход</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="73"/>
+        <location filename="mainwindow.ui" line="76"/>
         <source>Закрыть все окна</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="78"/>
+        <location filename="mainwindow.ui" line="81"/>
+        <location filename="mainwindow.cpp" line="48"/>
         <source>О программе</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="38"/>
-        <source>Abou CSV editor</source>
+        <location filename="mainwindow.cpp" line="30"/>
+        <source>Открыть CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="39"/>
-        <source>This app was created by ArtNlk</source>
+        <location filename="mainwindow.cpp" line="32"/>
+        <source>Файлы CSV</source>
+        <oldsource>Файлы CSV %1</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="49"/>
+        <source>Приложение создано ArtNlk</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -59,6 +66,21 @@
     <message>
         <location filename="mdichild.ui" line="14"/>
         <source>Mdi child</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mdichild.ui" line="42"/>
+        <source>Файл</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mdichild.ui" line="52"/>
+        <source>Сохранить</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mdichild.ui" line="57"/>
+        <source>Закрыть</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

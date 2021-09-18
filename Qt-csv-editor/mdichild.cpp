@@ -6,9 +6,16 @@ MdiChild::MdiChild(QWidget *parent) :
     ui(new Ui::MdiChild)
 {
     ui->setupUi(this);
+
+    setCentralWidget(ui->tableView);
 }
 
 MdiChild::~MdiChild()
 {
     delete ui;
+}
+
+void MdiChild::openFile(const QString &_filename)
+{
+    this->setWindowTitle(_filename);
 }

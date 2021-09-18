@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Редактор CSV</string>
   </property>
+  <property name="locale">
+   <locale language="Russian" country="Russia"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QMdiArea" name="mdiArea">
     <property name="geometry">

@@ -17,6 +17,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 public slots:
 
 
@@ -25,9 +26,12 @@ private slots:
     void onExitAction();
     void onCloseAllAction();
     void onAboutAction();
+    void onSaveAllAction();
 
 private:
     Ui::MainWindow *ui;
+
+    MdiChild* createChild(QString& fileName);
 
 };
 #endif // MAINWINDOW_H
