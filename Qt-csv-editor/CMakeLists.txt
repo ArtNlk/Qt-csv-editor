@@ -40,7 +40,7 @@ qt_add_executable(Qt-csv-editor
     )
 
 if(UPDATE_TRANSLATIONS)
-    message(STATUS"UPDATE_TRANSLATIONSoptionisset.")
+    message(STATUS"UPDATE_TRANSLATIONS option is set.")
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else()
     qt_add_translation(QM_FILES ${TS_FILES})

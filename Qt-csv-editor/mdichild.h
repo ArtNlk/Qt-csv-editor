@@ -2,6 +2,7 @@
 #define MDICHILD_H
 
 #include <QMainWindow>
+#include <QStandardItemModel>
 
 namespace Ui {
 class MdiChild;
@@ -15,13 +16,24 @@ public:
     explicit MdiChild(QWidget *parent = nullptr);
     ~MdiChild();
 
+    const QString& getFilename();
+
+signals:
+    void onClose(QString filename);
+
 public slots:
     void openFile(const QString& filename);
+
+    void onCloseAction();
+    void onSaveAction();
+
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::MdiChild *ui;
 
     QString fileName;
+    QStandardItemModel model;
 };
 
 #endif // MDICHILD_H

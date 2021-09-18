@@ -41,18 +41,18 @@
     <property name="title">
      <string>Файл</string>
     </property>
-    <addaction name="action"/>
-    <addaction name="action_2"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionClose"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action">
+  <action name="actionSave">
    <property name="text">
     <string>Сохранить</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="actionClose">
    <property name="text">
     <string>Закрыть</string>
    </property>

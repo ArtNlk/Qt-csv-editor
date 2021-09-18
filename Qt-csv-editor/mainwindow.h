@@ -27,9 +27,12 @@ private slots:
     void onCloseAllAction();
     void onAboutAction();
     void onSaveAllAction();
+    void onChooseWindowAction();
+    void onMdiChildClosing(QString filename);
 
 private:
     Ui::MainWindow *ui;
+    QVector<QAction*> windowActions;
 
     MdiChild* createChild(QString& fileName);
 

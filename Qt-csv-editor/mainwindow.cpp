@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QMdiSubWindow>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,7 +39,7 @@ void MainWindow::onOpenAction()
 
 void MainWindow::onCloseAllAction()
 {
-
+    ui->mdiArea->closeAllSubWindows();
 }
 
 void MainWindow::onAboutAction()
@@ -54,12 +55,48 @@ void MainWindow::onSaveAllAction()
 
 }
 
+void MainWindow::onChooseWindowAction()
+{
+    QAction* sender = qobject_cast<QAction*>(QObject::sender());
+    QList<QMdiSubWindow*> windows= ui->mdiArea->subWindowList();
+
+    for(QMdiSubWindow* window : windows)
+    {
+        if(qobject_cast<MdiChild*>(window->widget())->getFilename() == sender->text())
+        {
+            ui->mdiArea->setActiveSubWindow(window);
+            break;
+        }
+    }
+}
+
+void MainWindow::onMdiChildClosing(QString filename)
+{
+    qDebug() << "On close: " << filename;
+    for(QAction* action : ui->windowMenu->actions())
+    {
+        qDebug() << action->text();
+        if(action->text() == filename)
+        {
+            ui->windowMenu->removeAction(action);
+        }
+    }
+}
+
 MdiChild *MainWindow::createChild(QString &fileName)
 {
     MdiChild* newChild = new MdiChild(ui->mdiArea);
+    newChild->setAttribute(Qt::WA_DeleteOnClose,true);
     ui->mdiArea->addSubWindow(newChild);
     newChild->openFile(fileName);
     newChild->show();
+    connect(newChild,&MdiChild::onClose,this,&MainWindow::onMdiChildClosing);
+
+    QAction* newAction = new QAction(fileName,this);
+    windowActions.push_back(newAction);
+    ui->windowMenu->addAction(newAction);
+
+    connect(newAction,&QAction::triggered,this,&MainWindow::onChooseWindowAction);
 
     return newChild;
 }
