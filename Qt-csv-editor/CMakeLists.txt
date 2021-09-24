@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.1)
 
 project(Qt-csv-editor VERSION 0.1 LANGUAGES CXX)
 
@@ -22,7 +22,8 @@ set(TS_FILES
 
 set(PROJECT_SOURCES main.cpp
     mainwindow.cpp mainwindow.h
-    mdichild.h mdichild.cpp)
+    mdichild.h mdichild.cpp
+    csvparser.h csvparser.cpp)
 
 set(PROJECT_FORMS
     mainwindow.ui
