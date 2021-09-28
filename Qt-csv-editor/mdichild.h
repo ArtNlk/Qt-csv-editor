@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
+#include "csvio.h"
 
 namespace Ui {
 class MdiChild;
@@ -34,6 +35,7 @@ private:
 
     QString fileName;
     QStandardItemModel model;
+    CsvIO csv;
 };
 
 #endif // MDICHILD_H

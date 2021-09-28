@@ -23,7 +23,7 @@ set(TS_FILES
 set(PROJECT_SOURCES main.cpp
     mainwindow.cpp mainwindow.h
     mdichild.h mdichild.cpp
-    csvparser.h csvparser.cpp)
+    csvio.h csvio.cpp)
 
 set(PROJECT_FORMS
     mainwindow.ui

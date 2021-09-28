@@ -1,6 +1,9 @@
 #include "mdichild.h"
 #include "ui_mdichild.h"
 
+#include <QStringList>
+#include <QDebug>
+
 MdiChild::MdiChild(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MdiChild)
@@ -27,7 +30,30 @@ void MdiChild::openFile(const QString &_filename)
 {
     this->fileName = _filename;
     this->setWindowTitle(_filename);
-    ui->tableView->setModel(&this->model);
+    csv.open(fileName);
+    QStringList temp;
+    QStringList header;
+    csv.parseNext(header);
+    int row = 0;
+    int col = 0;
+    while(csv.parseNext(temp))
+    {
+        for(auto& field : temp)
+        {
+            model.setItem(row,col,new QStandardItem(field));
+            col++;
+        }
+        col = 0;
+        row++;
+    }
+
+    for(int i = 0; i < header.length(); i++)
+    {
+        model.setHeaderData(i,Qt::Horizontal,QVariant(header[i]));
+        //TODO set delegates
+    }
+
+    ui->tableView->setModel(&model);
 }
 
 void MdiChild::onCloseAction()
@@ -39,7 +65,7 @@ void MdiChild::onCloseAction()
 
 void MdiChild::onSaveAction()
 {
-
+    csv.saveModel(model);
 }
 
 void MdiChild::closeEvent(QCloseEvent *event)
