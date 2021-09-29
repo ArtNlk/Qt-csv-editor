@@ -23,7 +23,8 @@ set(TS_FILES
 set(PROJECT_SOURCES main.cpp
     mainwindow.cpp mainwindow.h
     mdichild.h mdichild.cpp
-    csvio.h csvio.cpp)
+    csvio.h csvio.cpp
+    combodelegate.h combodelegate.cpp)
 
 set(PROJECT_FORMS
     mainwindow.ui

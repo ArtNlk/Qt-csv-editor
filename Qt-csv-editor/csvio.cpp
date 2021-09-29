@@ -44,7 +44,7 @@ bool CsvIO::parseNext(QStringList &outputList)
     }
     if(fieldCount != headerSize)
     {
-        throw std::runtime_error("Record size mismatch!");
+        throw std::runtime_error("CSVIO: Record size mismatch!");
     }
     outputList = output;
 
@@ -80,7 +80,8 @@ void CsvIO::saveModel(const QStandardItemModel &model)
     for(int col = 0; col < model.columnCount(); col++)
     {
         temp = model.headerData(col,Qt::Horizontal).toString();
-        tempLine.append(temp);
+        temp.replace("\"","\"\"");
+        tempLine.append(QString("\"%1\"").arg(temp));
         if(col != model.columnCount() - 1)
         {
         tempLine.append(',');

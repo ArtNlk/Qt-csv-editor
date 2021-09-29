@@ -4,6 +4,10 @@
 #include <QStringList>
 #include <QDebug>
 
+#include "combodelegate.h"
+
+QRegularExpression MdiChild::enumRegex = QRegularExpression("enum\\((?:.+,)*(?:.+)\\)");
+
 MdiChild::MdiChild(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MdiChild)
@@ -54,6 +58,14 @@ void MdiChild::openFile(const QString &_filename)
     }
 
     ui->tableView->setModel(&model);
+
+    for(int i = 0; i < model.columnCount();i++)
+    {
+        if(enumRegex.match(model.headerData(i,Qt::Horizontal).toString()).hasMatch())
+        {
+            ui->tableView->setItemDelegateForColumn(i,new ComboDelegate(&model));
+        }
+    }
 }
 
 void MdiChild::onCloseAction()

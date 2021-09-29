@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
+#include <QRegularExpression>
 #include "csvio.h"
 
 namespace Ui {
@@ -33,6 +34,7 @@ public slots:
 private:
     Ui::MdiChild *ui;
 
+    static QRegularExpression enumRegex;
     QString fileName;
     QStandardItemModel model;
     CsvIO csv;
