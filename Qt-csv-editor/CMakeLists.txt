@@ -24,7 +24,9 @@ set(PROJECT_SOURCES main.cpp
     mainwindow.cpp mainwindow.h
     mdichild.h mdichild.cpp
     csvio.h csvio.cpp
-    combodelegate.h combodelegate.cpp)
+    combodelegate.h combodelegate.cpp
+    intdelegate.h intdelegate.cpp
+    booldelegate.h booldelegate.cpp)
 
 set(PROJECT_FORMS
     mainwindow.ui

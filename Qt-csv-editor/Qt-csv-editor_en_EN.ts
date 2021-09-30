@@ -74,13 +74,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mdichild.ui" line="52"/>
+        <location filename="mdichild.ui" line="54"/>
         <source>Сохранить</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mdichild.ui" line="57"/>
+        <location filename="mdichild.ui" line="59"/>
         <source>Закрыть</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mdichild.ui" line="64"/>
+        <source>Добавить запись</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mdichild.ui" line="69"/>
+        <source>Удалить запись</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

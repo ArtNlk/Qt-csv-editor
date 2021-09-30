@@ -28,11 +28,14 @@ public slots:
 
     void onCloseAction();
     void onSaveAction();
+    void onAddRecordAction();
+    void onRemoveRecordAction();
 
     void closeEvent(QCloseEvent *event);
 
 private:
     Ui::MdiChild *ui;
+    bool loaded;
 
     static QRegularExpression enumRegex;
     QString fileName;

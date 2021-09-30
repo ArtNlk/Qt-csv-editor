@@ -3,14 +3,18 @@
 
 #include <QStringList>
 #include <QDebug>
+#include <algorithm>
 
 #include "combodelegate.h"
+#include "intdelegate.h"
+#include "booldelegate.h"
 
 QRegularExpression MdiChild::enumRegex = QRegularExpression("enum\\((?:.+,)*(?:.+)\\)");
 
 MdiChild::MdiChild(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MdiChild)
+    ui(new Ui::MdiChild),
+    loaded(false)
 {
     ui->setupUi(this);
 
@@ -18,6 +22,8 @@ MdiChild::MdiChild(QWidget *parent) :
 
     connect(ui->actionClose,&QAction::triggered,this,&MdiChild::onCloseAction);
     connect(ui->actionSave,&QAction::triggered,this,&MdiChild::onSaveAction);
+    connect(ui->actionRemoveRecord,&QAction::triggered,this,&MdiChild::onRemoveRecordAction);
+    connect(ui->actionAddRecord,&QAction::triggered,this,&MdiChild::onAddRecordAction);
 }
 
 MdiChild::~MdiChild()
@@ -58,14 +64,23 @@ void MdiChild::openFile(const QString &_filename)
     }
 
     ui->tableView->setModel(&model);
-
+    QString currentHeader;
     for(int i = 0; i < model.columnCount();i++)
     {
-        if(enumRegex.match(model.headerData(i,Qt::Horizontal).toString()).hasMatch())
+        currentHeader = model.headerData(i,Qt::Horizontal).toString();
+        if(enumRegex.match(currentHeader).hasMatch())
         {
             ui->tableView->setItemDelegateForColumn(i,new ComboDelegate(&model));
         }
+        else if(currentHeader == "int")
+        {
+            ui->tableView->setItemDelegateForColumn(i,new IntDelegate(&model));
+        } else if(currentHeader == "bool")
+        {
+            ui->tableView->setItemDelegateForColumn(i,new BoolDelegate(&model));
+        }
     }
+    loaded = true;
 }
 
 void MdiChild::onCloseAction()
@@ -78,6 +93,25 @@ void MdiChild::onCloseAction()
 void MdiChild::onSaveAction()
 {
     csv.saveModel(model);
+}
+
+void MdiChild::onAddRecordAction()
+{
+    if(!loaded) return;
+    QList<QStandardItem*> newRow = QList<QStandardItem*>(model.columnCount());
+    model.appendRow(newRow);
+}
+
+void MdiChild::onRemoveRecordAction()
+{
+    if(!loaded) return;
+    QItemSelectionModel* selection = ui->tableView->selectionModel();
+    QModelIndexList selections = selection->selection().indexes();
+    std::sort(selections.begin(),selections.end(),[](QModelIndex a, QModelIndex b){return a.row() > b.row();});
+    for(auto& selection : selections)
+    {
+        model.removeRow(selection.row());
+    }
 }
 
 void MdiChild::closeEvent(QCloseEvent *event)
