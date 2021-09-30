@@ -3,6 +3,7 @@
 
 #include <QStringList>
 #include <QDebug>
+#include <QMessageBox>
 #include <algorithm>
 
 #include "combodelegate.h"
@@ -40,7 +41,13 @@ void MdiChild::openFile(const QString &_filename)
 {
     this->fileName = _filename;
     this->setWindowTitle(_filename);
-    csv.open(fileName);
+    try {
+        csv.open(fileName);
+    }  catch (std::runtime_error e) {
+        QMessageBox::information(this,
+                                 tr("Ошибка открытия файла"),
+                                 tr("Ошибка открытия \n%1").arg(_filename));
+    }
     QStringList temp;
     QStringList header;
     csv.parseNext(header);

@@ -28,13 +28,15 @@ private slots:
     void onAboutAction();
     void onSaveAllAction();
     void onChooseWindowAction();
+    void onOpenRecentAction();
     void onMdiChildClosing(QString filename);
 
-private:
+protected:
     Ui::MainWindow *ui;
-    QVector<QAction*> windowActions;
+    static const int maxRecents = 5;
+    QVector<QAction*> recentsActions;
 
     MdiChild* createChild(QString& fileName);
-
+    void updateRecents(const QString& fileName);
 };
 #endif // MAINWINDOW_H
