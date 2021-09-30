@@ -6,59 +6,42 @@
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>Редактор CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>CSV Editor</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="42"/>
         <source>Файл</source>
-        <translation type="unfinished"></translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="49"/>
         <source>Окно</source>
-        <translation type="unfinished"></translation>
+        <translation>Window</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="55"/>
         <source>Справка</source>
-        <translation type="unfinished"></translation>
+        <translation>Help</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="66"/>
         <source>Открыть</source>
-        <translation type="unfinished"></translation>
+        <translation>Open</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="71"/>
         <source>Выход</source>
-        <translation type="unfinished"></translation>
+        <translation>Exit</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="76"/>
         <source>Закрыть все окна</source>
-        <translation type="unfinished"></translation>
+        <translation>Close all windows</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="81"/>
-        <location filename="mainwindow.cpp" line="49"/>
         <source>О программе</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="31"/>
-        <source>Открыть CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="33"/>
-        <source>Файлы CSV</source>
-        <oldsource>Файлы CSV %1</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="50"/>
-        <source>Приложение создано ArtNlk</source>
-        <translation type="unfinished"></translation>
+        <translation>About</translation>
     </message>
 </context>
 <context>
@@ -66,32 +49,32 @@
     <message>
         <location filename="mdichild.ui" line="14"/>
         <source>Mdi child</source>
-        <translation type="unfinished"></translation>
+        <translation>Mdi child</translation>
     </message>
     <message>
         <location filename="mdichild.ui" line="42"/>
         <source>Файл</source>
-        <translation type="unfinished"></translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="mdichild.ui" line="54"/>
         <source>Сохранить</source>
-        <translation type="unfinished"></translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="mdichild.ui" line="59"/>
         <source>Закрыть</source>
-        <translation type="unfinished"></translation>
+        <translation>Close</translation>
     </message>
     <message>
         <location filename="mdichild.ui" line="64"/>
         <source>Добавить запись</source>
-        <translation type="unfinished"></translation>
+        <translation>Add record</translation>
     </message>
     <message>
         <location filename="mdichild.ui" line="69"/>
         <source>Удалить запись</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete record</translation>
     </message>
 </context>
 </TS>
