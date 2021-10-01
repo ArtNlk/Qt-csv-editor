@@ -16,7 +16,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 option(UPDATE_TRANSLATIONS "Update source translation (files translations/*.ts)." ON)
 
 set(TS_FILES
-    Qt-csv-editor_en_EN.ts)
+    Qt-csv-editor_en_US.ts)
 
 set(PROJECT_SOURCES main.cpp
     mainwindow.cpp
@@ -38,7 +38,7 @@ set(PROJECT_FORMS
     mainwindow.ui
     mdichild.ui)
 
-set(TRANSLATABLES ${PROJECT_FORMS} ${PROJECT_HEADERS})
+set(TRANSLATABLES ${PROJECT_FORMS} ${PROJECT_SOURCES})
 
 if(UPDATE_TRANSLATIONS)
     message(STATUS "UPDATE_TRANSLATIONS option is set.")
@@ -69,7 +69,8 @@ target_link_libraries(Qt-csv-editor PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
 
 #installation
 include(DeployQt4)
-set(CMAKE_INSTALL_PREFIX "D:/Programs/Qt-csv-editor/" )
+#set(CMAKE_INSTALL_PREFIX "D:/Programs/Qt-csv-editor/" )
+set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR} )
 get_property(LIB_QTCORE_PATH TARGET Qt6::Core PROPERTY IMPORTED_LOCATION_RELEASE)
 get_property(LIB_QTWIDGETS_PATH TARGET Qt6::Widgets PROPERTY IMPORTED_LOCATION_RELEASE)
 get_property(LIB_QTGUI_PATH TARGET Qt6::Gui PROPERTY IMPORTED_LOCATION_RELEASE)
@@ -83,13 +84,13 @@ install(DIRECTORY "${QT_PATH}/plugins/platforms" DESTINATION bin)
 install(TARGETS Qt-csv-editor RUNTIME DESTINATION bin)
 install(FILES ${QM_FILES} DESTINATION translations)
 
-set(EXE_PATH bin/Qt-csv-editor${CMAKE_EXECUTABLE_SUFFIX})
+#set(EXE_PATH bin/Qt-csv-editor${CMAKE_EXECUTABLE_SUFFIX})
 
 install(FILES "${LIB_QTCORE_PATH}" DESTINATION bin)
 install(FILES "${LIB_QTWIDGETS_PATH}" DESTINATION bin)
 install(FILES "${LIB_QTGUI_PATH}" DESTINATION bin)
 
-message(STATUS "Installing to " ${CMAKE_INSTALL_PREFIX})
+message(STATUS "Installing to " ${CMAKE_INSTALL_PREFIX} " / " ${EXE_PATH})
 
 install_qt4_executable(
     "${EXE_PATH}"     #исполняемый файл

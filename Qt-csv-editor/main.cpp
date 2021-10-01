@@ -3,19 +3,33 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QMessageBox>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    const char* dirs[] = {
+        "../translations",
+        "/translations",
+        0
+    };
+
     QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        const QString baseName = "Qt-csv-editor_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
-            break;
-        }
+    bool translatorLoaded = false;
+    for(const char* dir : dirs)
+    {
+        translatorLoaded = translator.load(QLocale::system(),"Qt-csv-editor","_",dir);
+        if(translatorLoaded) break;
+    }
+    if(!translatorLoaded){
+        QMessageBox::warning(nullptr,
+                             "Переводчик",
+                             QString("Ошибка загрузки переводчика для %1").arg(QLocale::system().name()));
+    }
+    else
+    {
+        a.installTranslator(&translator);
     }
     MainWindow w;
     w.show();
