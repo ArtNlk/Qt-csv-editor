@@ -11,21 +11,21 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QCommandLineParser parser;
 
-    QCommandLineOption localeOption("locale");
-    parser.addOption(localeOption);
     parser.process(a);
 
     QLocale locale;
-    if(parser.value("locale") == "ru")
+    if(parser.positionalArguments().at(0) == "ru")
     {
         locale = QLocale::Russian;
-    }else if(parser.value("locale") == "en")
+    }else if(parser.positionalArguments().at(0) == "en")
     {
         locale = QLocale::English;
     }else
     {
         locale = QLocale::system();
     }
+
+    qDebug() << "Loading locale: " << locale.language();
 
     const char* dirs[] = {
         "../translations",

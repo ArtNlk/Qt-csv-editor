@@ -16,7 +16,8 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 option(UPDATE_TRANSLATIONS "Update source translation (files translations/*.ts)." ON)
 
 set(TS_FILES
-    Qt-csv-editor_en_US.ts)
+    Qt-csv-editor_en_US.ts
+    Qt-csv-editor_ru_RU.ts)
 
 set(PROJECT_SOURCES main.cpp
     mainwindow.cpp
