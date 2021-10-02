@@ -44,13 +44,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::onOpenAction()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
+    QStringList fileNames = QFileDialog::getOpenFileNames(this,
                                                     tr("Открыть CSV"),
                                                     "",
                                                     tr("Файлы CSV")+"(*.csv)");
-    if(!fileName.isEmpty())
+    if(!fileNames.isEmpty())
     {
-        createChild(fileName);
+        for(auto& fileName : fileNames)
+        {
+            createChild(fileName);
+        }
     }
 }
 
@@ -150,7 +153,7 @@ void MainWindow::updateRecents(const QString &fileName)
         }
     }
 
-    if(recentsActions.size() > maxRecents)
+    if(recentsActions.size() >= maxRecents)
     {
         ui->fileMenu->removeAction(recentsActions.at(0));
         recentsActions.at(0)->deleteLater();

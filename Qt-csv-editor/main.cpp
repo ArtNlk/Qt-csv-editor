@@ -14,13 +14,20 @@ int main(int argc, char *argv[])
     parser.process(a);
 
     QLocale locale;
-    if(parser.positionalArguments().at(0) == "ru")
+    if(parser.positionalArguments().size() > 0)
     {
-        locale = QLocale::Russian;
-    }else if(parser.positionalArguments().at(0) == "en")
-    {
-        locale = QLocale::English;
-    }else
+        if(parser.positionalArguments().at(0) == "ru")
+        {
+            locale = QLocale::Russian;
+        }else if(parser.positionalArguments().at(0) == "en")
+        {
+            locale = QLocale::English;
+        }else
+        {
+            locale = QLocale::system();
+        }
+    }
+    else
     {
         locale = QLocale::system();
     }
