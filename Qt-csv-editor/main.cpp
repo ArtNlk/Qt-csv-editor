@@ -4,10 +4,28 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QMessageBox>
+#include <QCommandLineParser>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QCommandLineParser parser;
+
+    QCommandLineOption localeOption("locale");
+    parser.addOption(localeOption);
+    parser.process(a);
+
+    QLocale locale;
+    if(parser.value("locale") == "ru")
+    {
+        locale = QLocale::Russian;
+    }else if(parser.value("locale") == "en")
+    {
+        locale = QLocale::English;
+    }else
+    {
+        locale = QLocale::system();
+    }
 
     const char* dirs[] = {
         "../translations",
@@ -19,7 +37,7 @@ int main(int argc, char *argv[])
     bool translatorLoaded = false;
     for(const char* dir : dirs)
     {
-        translatorLoaded = translator.load(QLocale::system(),"Qt-csv-editor","_",dir);
+        translatorLoaded = translator.load(locale,"Qt-csv-editor","_",dir);
         if(translatorLoaded) break;
     }
     if(!translatorLoaded){

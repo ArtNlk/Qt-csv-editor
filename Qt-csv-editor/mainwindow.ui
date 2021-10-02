@@ -34,7 +34,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -42,6 +42,7 @@
      <string>Файл</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionSaveAll"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="windowMenu">
@@ -79,6 +80,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>О программе</string>
+   </property>
+  </action>
+  <action name="actionSaveAll">
+   <property name="text">
+    <string>Сохранить все</string>
    </property>
   </action>
  </widget>

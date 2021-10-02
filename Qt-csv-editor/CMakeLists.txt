@@ -69,8 +69,8 @@ target_link_libraries(Qt-csv-editor PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
 
 #installation
 include(DeployQt4)
-#set(CMAKE_INSTALL_PREFIX "D:/Programs/Qt-csv-editor/" )
-set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR} )
+set(CMAKE_INSTALL_PREFIX "D:/Programs/Qt-csv-editor/" )
+#set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR} )
 get_property(LIB_QTCORE_PATH TARGET Qt6::Core PROPERTY IMPORTED_LOCATION_RELEASE)
 get_property(LIB_QTWIDGETS_PATH TARGET Qt6::Widgets PROPERTY IMPORTED_LOCATION_RELEASE)
 get_property(LIB_QTGUI_PATH TARGET Qt6::Gui PROPERTY IMPORTED_LOCATION_RELEASE)
@@ -84,7 +84,7 @@ install(DIRECTORY "${QT_PATH}/plugins/platforms" DESTINATION bin)
 install(TARGETS Qt-csv-editor RUNTIME DESTINATION bin)
 install(FILES ${QM_FILES} DESTINATION translations)
 
-#set(EXE_PATH bin/Qt-csv-editor${CMAKE_EXECUTABLE_SUFFIX})
+set(EXE_PATH bin/Qt-csv-editor${CMAKE_EXECUTABLE_SUFFIX})
 
 install(FILES "${LIB_QTCORE_PATH}" DESTINATION bin)
 install(FILES "${LIB_QTWIDGETS_PATH}" DESTINATION bin)

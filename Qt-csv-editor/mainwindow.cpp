@@ -5,9 +5,12 @@
 #include <QFileDialog>
 #include <QMdiSubWindow>
 
+const QString MainWindow::recentFilesKey = QString("recentFiles");
+
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    settings("ArtNlk","Qt-csv-editor")
 {
     ui->setupUi(this);
 
@@ -16,8 +19,22 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::onOpenAction);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onExitAction);
     connect(ui->actionCloseAll, &QAction::triggered, this, &MainWindow::onCloseAllAction);
+    connect(ui->actionSaveAll, &QAction::triggered, this, &MainWindow::onSaveAllAction);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onAboutAction);
 
+    QList<QVariant> recents = settings.value(recentFilesKey).toList();
+    for(auto& recentFile : recents)
+    {
+        qDebug() << "Loading recent: " << recentFile.toString();
+        QFile test = QFile(recentFile.toString());
+        test.open(QIODevice::ReadOnly);
+        if(test.isOpen())
+        {
+            updateRecents(recentFile.toString());
+            qDebug() << "Adding recent: " << recentFile.toString();
+        }
+        test.close();
+    }
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +69,10 @@ void MainWindow::onAboutAction()
 
 void MainWindow::onSaveAllAction()
 {
-
+    for(QMdiSubWindow* child : ui->mdiArea->subWindowList())
+    {
+        qobject_cast<MdiChild*>(child->widget())->onSaveAction();
+    }
 }
 
 void MainWindow::onChooseWindowAction()
@@ -130,7 +150,7 @@ void MainWindow::updateRecents(const QString &fileName)
         }
     }
 
-    if(ui->fileMenu->actions().size() > maxRecents)
+    if(recentsActions.size() > maxRecents)
     {
         ui->fileMenu->removeAction(recentsActions.at(0));
         recentsActions.at(0)->deleteLater();
@@ -144,8 +164,21 @@ void MainWindow::updateRecents(const QString &fileName)
     connect(newAction,&QAction::triggered,this,&MainWindow::onOpenRecentAction);
 }
 
+void MainWindow::saveRecents()
+{
+    QList<QVariant> temp = QList<QVariant>(recentsActions.size());
+
+    for(auto& recentFileAction : recentsActions)
+    {
+        temp.append(QVariant(recentFileAction->text()));
+    }
+
+    settings.setValue(recentFilesKey,temp);
+}
+
 void MainWindow::onExitAction()
 {
+    saveRecents();
     this->close();
 }
 

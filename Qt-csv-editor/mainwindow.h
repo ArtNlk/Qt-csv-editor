@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSettings>
 
 #include "mdichild.h"
 
@@ -17,10 +18,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
-public slots:
-
-
 private slots:
     void onOpenAction();
     void onExitAction();
@@ -34,9 +31,12 @@ private slots:
 protected:
     Ui::MainWindow *ui;
     static const int maxRecents = 5;
+    static const QString recentFilesKey;
+    QSettings settings;
     QVector<QAction*> recentsActions;
 
     MdiChild* createChild(QString& fileName);
     void updateRecents(const QString& fileName);
+    void saveRecents();
 };
 #endif // MAINWINDOW_H
